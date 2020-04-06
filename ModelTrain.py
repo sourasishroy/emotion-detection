@@ -23,6 +23,16 @@ X_train/=255.0
 Y_train=to_categorical(Y_train, num_classes=7)
 Y_test=to_categorical(Y_test, num_classes=7)
 
+
+# X_test=tf.keras.utils.normalize(X_test)
+# X_train=tf.keras.utils.normalize(X_train)
+
+            
+name="{}-Trial2".format(int(time.time()))
+tensorboard=TensorBoard(log_dir='logs2\{}'.format(name))
+model=Sequential()
+
+
 model.add(Conv2D(64, (3, 3), activation='relu', input_shape=(48, 48, 1), kernel_regularizer=l2(0.01)))
 model.add(Conv2D(64, (3, 3), padding='same',activation='relu'))
 model.add(BatchNormalization())
