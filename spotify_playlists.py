@@ -1,5 +1,4 @@
 import webbrowser as wb
-emotion=input("Enter emotion")
 
 def angry():
     wb.open("https://open.spotify.com/playlist/37i9dQZF1DX3ND264N08pv")
@@ -19,20 +18,21 @@ def disgusted():
 def surprised():
     wb.open("https://open.spotify.com/playlist/37i9dQZF1DX1tyCD9QhIWF")         #Walk like a badass
 
-def calm():
+def fear():
     wb.open("https://open.spotify.com/playlist/37i9dQZF1DWSRc3WJklgBs")         #Heart Beats
 
-if emotion=="angry":
-    angry()
-elif emotion=="sad":
-    sad()
-elif emotion=="disgusted":
-    disgusted()
-elif emotion=="happy":
-    happy()
-elif emotion=="neutral":
-    neutral()
-elif emotion=="surprised":
-    surprised()
-elif emotion=="calm":
-    calm()
+def final(emotion):
+    if emotion=="Angry":
+        angry()
+    elif emotion=="Sad":
+        sad()
+    elif emotion=="Disgust":
+        disgusted()
+    elif emotion=="Happy":
+        happy()
+    elif emotion=="Neutral":
+        neutral()
+    elif emotion=="Surprise":
+        surprised()
+    elif emotion=="Fear":
+        fear()

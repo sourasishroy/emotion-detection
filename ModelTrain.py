@@ -1,5 +1,5 @@
 import tensorflow as tf
-from tensorflow.keras.models import Sequential
+from tensorflow.keras.models import Sequential,model_from_json
 from tensorflow.keras.layers import Dense, Dropout, Activation, Flatten, Conv2D,MaxPooling2D, BatchNormalization
 from tensorflow.keras.callbacks import TensorBoard,ReduceLROnPlateau
 from tensorflow.keras.regularizers import l2
@@ -37,60 +37,75 @@ model.add(Conv2D(64, (3, 3), activation='relu', input_shape=(48, 48, 1), kernel_
 model.add(Conv2D(64, (3, 3), padding='same',activation='relu'))
 model.add(BatchNormalization())
 model.add(MaxPooling2D(pool_size=(2,2), strides=(2, 2)))
-model.add(Dropout(0.1))
+model.add(Dropout(0.45))
 
 model.add(Conv2D(128, (3, 3), padding='same', activation='relu'))
 model.add(BatchNormalization())
 
-model.add(Conv2D(128, (3, 3), padding='same', activation='relu'))
-model.add(BatchNormalization())
 
 model.add(Conv2D(128, (3, 3), padding='same', activation='relu'))
 model.add(BatchNormalization())
 
+
+model.add(Conv2D(128, (3, 3), padding='same', activation='relu'))
+model.add(BatchNormalization())
 model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Dropout(0.1))
+model.add(Dropout(0.45))
+
+model.add(Conv2D(256, (3, 3), padding='same', activation='relu',kernel_regularizer=l2(0.1)))
+model.add(BatchNormalization())
+
 
 model.add(Conv2D(256, (3, 3), padding='same', activation='relu'))
 model.add(BatchNormalization())
 
-model.add(Conv2D(256, (3, 3), padding='same', activation='relu'))
-model.add(BatchNormalization())
 
 model.add(Conv2D(256, (3, 3), padding='same', activation='relu'))
 model.add(BatchNormalization())
-
 model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Dropout(0.1)) 
+model.add(Dropout(0.45)) 
 
 model.add(Conv2D(512, (3, 3), padding='same', activation='relu'))
 model.add(BatchNormalization())
 
-model.add(Conv2D(512, (3, 3), padding='same', activation='relu'))
-model.add(BatchNormalization())
 
 model.add(Conv2D(512, (3, 3), padding='same', activation='relu'))
 model.add(BatchNormalization())
 
+
+model.add(Conv2D(512, (3, 3), padding='same', activation='relu'))
+model.add(BatchNormalization())
 model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Dropout(0.1))    
+model.add(Dropout(0.45))
+
+model.add(Conv2D(1024, (3, 3), padding='same', activation='relu',kernel_regularizer=l2(0.1)))
+model.add(BatchNormalization())
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(Dropout(0.45))
+
 model.add(Flatten())
 
 model.add(Dense(512, activation='relu'))
-model.add(Dropout(0.1))
+model.add(Dropout(0.45))
 
 model.add(Dense(256, activation='relu'))
-model.add(Dropout(0.1))
+model.add(Dropout(0.45))
 
 model.add(Dense(128, activation='relu'))
-model.add(Dropout(0.1))
+model.add(Dropout(0.45))
 
 model.add(Dense(64, activation='relu'))
-model.add(Dropout(0.1))
+model.add(Dropout(0.45))
 
 model.add(Dense(7, activation='softmax'))
 
 model.compile(loss='categorical_crossentropy',optimizer="adam", metrics=['accuracy'])
 
-model.fit(X_train,Y_train,batch_size=64,validation_data=(X_test,Y_test), epochs=150,callbacks=[tensorboard])
+model.fit(X_train,Y_train,batch_size=64,validation_data=(X_test,Y_test), epochs=350,callbacks=[tensorboard])
+
+model_json = model.to_json()
+with open("model.json", "w") as json_file:
+    json_file.write(model_json)
+# serialize weights to HDF5
+model.save_weights("model.h5")
 
