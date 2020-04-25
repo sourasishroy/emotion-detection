@@ -6,13 +6,16 @@ from tensorflow.keras.regularizers import l2
 import numpy as np
 from tensorflow.keras.utils import to_categorical
 import time
+import os
 #2-64-0 3-64-0 4-64-0 4-128-1 4-64-2 4-128-2
 name="EmotionDetection-{}".format(int(time.time()))
 tensorboard=TensorBoard(log_dir='logs\{}'.format(name))
-X_test=np.load("test_X.npy")
-Y_test=np.load("test_Y.npy")
-X_train=np.load("train_X.npy")
-Y_train=np.load("train_Y.npy")
+path="Numpy (Data) Files/"
+
+X_test=np.load(os.path.join(path,"test_X.npy"))
+Y_test=np.load(os.path.join(path,"test_Y.npy"))
+X_train=np.load(os.path.join(path,"train_X.npy"))
+Y_train=np.load(os.path.join(path,"train_Y.npy"))
 
 Y_train=Y_train.reshape(Y_train.shape[0],1)
 Y_test=Y_test.reshape(Y_test.shape[0],1)
