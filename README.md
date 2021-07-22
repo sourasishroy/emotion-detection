@@ -19,7 +19,7 @@ The repository is currently compatible with `tensorflow-2.1.0` and makes use of 
 - The network outputs a list of **scores** for seven classes of emotions.
 - The emotion with **maximum** score is displayed on the screen.
 ## Accuracy
-- With a simple **12-layer** CNN, the test accuracy reached **65.3%** in **150 epochs**.
+- With a simple **12-layer** CNN, the test accuracy reached **79.8%** in **150 epochs**.
 ![test](https://user-images.githubusercontent.com/60285133/80638635-6009f880-8a7e-11ea-8558-97007e8f2b78.jpeg)
 - The train accuracy reached **90.7%** in **150 epochs**. 
 ![train](https://user-images.githubusercontent.com/60285133/80638582-4b2d6500-8a7e-11ea-9704-8e86c49f95d3.jpeg)
